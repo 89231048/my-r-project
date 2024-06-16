@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Anastasija Gavrilovic">
+
+<title>Data Programming</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="project_files/libs/clipboard/clipboard.min.js"></script>
+<script src="project_files/libs/quarto-html/quarto.js"></script>
+<script src="project_files/libs/quarto-html/popper.min.js"></script>
+<script src="project_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="project_files/libs/quarto-html/anchor.min.js"></script>
+<link href="project_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="project_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="project_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="project_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="project_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Programming</h1>
+<p class="subtitle lead">Project</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Anastasija Gavrilovic </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Invalid Date</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="job-table-description" class="level1">
+<h1>Job Table Description:</h1>
+<p>The job table contains comprehensive information about various job postings. Each row represents a unique job listing, and each column provides specific details about the job, such as the job ID, experience required, qualifications, salary range, location, company details, job posting date, and contact information.</p>
+<p>The “Job.ID” column uniquely identifies each job listing, allowing for easy reference and tracking. Experience and qualifications columns outline the required background and skills necessary for the job. Salary range provides an estimate of the compensation offered for the position.</p>
+<p>Location information includes the country, latitude, and longitude coordinates, facilitating geographical analysis and visualization. The “Work.Type” column specifies whether the job is full-time, part-time, remote, or on-site.</p>
+<p>Company details such as size, profile, and contact person information are included to provide insights into the hiring organization. Job posting date indicates when the job was advertised, allowing users to filter recent postings.</p>
+<p>The “Role” column outlines the specific role or position being offered, while the “Job.Portal” column specifies the platform where the job was posted.</p>
+<p>Additionally, the table includes columns for benefits, required skills, job responsibilities, and preferences, providing a comprehensive overview of each job listing.<span class="citation" data-cites="topresume">(<a href="#ref-topresume" role="doc-biblioref">TopResume 2024</a>)</span></p>
+<p>**Overall, the job table serves as a valuable resource for: 1. job seekers 2. <span style="color:blue">recruiters</span> 3. analysts alike, offering detailed insights into the job market landscape and employment opportunities.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(<span class="at">zipfile =</span> <span class="st">"/home/anastasija/Desktop/archive.zip"</span>, <span class="at">exdir =</span> <span class="st">"/home/anastasija/Desktop"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"/home/anastasija/Desktop/JOB.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Job.Id    Experience Qualifications Salary.Range   location
+1 1.089844e+15 5 to 15 Years         M.Tech    $59K-$99K    Douglas
+2 3.984541e+14 2 to 12 Years            BCA   $56K-$116K   Ashgabat
+3 4.816401e+14 0 to 12 Years            PhD   $61K-$104K      Macao
+4 6.881927e+14 4 to 11 Years            PhD    $65K-$91K Porto-Novo
+5 1.170578e+14 1 to 12 Years            MBA    $64K-$87K   Santiago
+6 1.168314e+14 4 to 12 Years            MCA    $59K-$93K   Brussels
+           Country latitude longitude Work.Type Company.Size Job.Posting.Date
+1      Isle of Man  54.2361   -4.5481    Intern        26801       2022-04-24
+2     Turkmenistan  38.9697   59.5563    Intern       100340       2022-12-19
+3 Macao SAR, China  22.1987  113.5439 Temporary        84525       2022-09-14
+4            Benin   9.3077    2.3158 Full-Time       129896       2023-02-25
+5            Chile -35.6751  -71.5429    Intern        53944       2022-10-11
+6          Belgium  50.5039    4.4699 Full-Time        23196       2023-07-25
+  Preference     Contact.Person               Contact
+1     Female Brandon Cunningham  001-381-930-7517x737
+2     Female   Francisco Larsen          461-509-4216
+3       Male        Gary Gibson            9687619505
+4     Female         Joy Lucero +1-820-643-5431x47576
+5     Female      Julie Johnson     343.975.4702x9340
+6       Male       Matthew Gill   (973)791-5355x52199
+                     Job.Title                      Role   Job.Portal
+1 Digital Marketing Specialist      Social Media Manager     Snagajob
+2                Web Developer    Frontend Web Developer     Idealist
+3           Operations Manager   Quality Control Manager Jobs2Careers
+4             Network Engineer Wireless Network Engineer     FlexJobs
+5                Event Manager        Conference Manager Jobs2Careers
+6              Software Tester Quality Assurance Analyst     Snagajob
+                                                                                                                                                                                                                              Job.Description
+1                                    Social Media Managers oversee an organizations social media presence. They create and schedule content, engage with followers, and analyze social media metrics to drive brand awareness and engagement.
+2     Frontend Web Developers design and implement user interfaces for websites, ensuring they are visually appealing and user-friendly. They collaborate with designers and backend developers to create seamless web experiences for users.
+3              Quality Control Managers establish and enforce quality standards within an organization. They develop quality control processes, perform inspections, and implement corrective actions to maintain product or service quality.
+4                                    Wireless Network Engineers design, implement, and maintain wireless network solutions. They optimize wireless connectivity, troubleshoot issues, and ensure reliable and secure wireless communications.
+5 A Conference Manager coordinates and manages conferences, meetings, and events. They plan logistics, handle budgeting, liaise with vendors, and ensure the smooth execution of events, catering to the needs and expectations of attendees.
+6                                                   A Quality Assurance Analyst tests software and products to ensure they meet quality standards. They identify defects, report issues, and work with development teams to resolve problems.
+                                                                                                                                                Benefits
+1                    {'Flexible Spending Accounts (FSAs), Relocation Assistance, Legal Assistance, Employee Recognition Programs, Financial Counseling'}
+2                            {'Health Insurance, Retirement Plans, Paid Time Off (PTO), Flexible Work Arrangements, Employee Assistance Programs (EAP)'}
+3                                          {'Legal Assistance, Bonuses and Incentive Programs, Wellness Programs, Employee Discounts, Retirement Plans'}
+4                              {'Transportation Benefits, Professional Development, Bonuses and Incentive Programs, Profit-Sharing, Employee Discounts'}
+5                    {'Flexible Spending Accounts (FSAs), Relocation Assistance, Legal Assistance, Employee Recognition Programs, Financial Counseling'}
+6 {'Life and Disability Insurance, Stock Options or Equity Grants, Employee Recognition Programs, Health Insurance, Social and Recreational Activities'}
+                                                                                                                                                                                                   skills
+1                            Social media platforms (e.g., Facebook, Twitter, Instagram) Content creation and scheduling Social media analytics and insights Community engagement Paid social advertising
+2                                                                                                                   HTML, CSS, JavaScript Frontend frameworks (e.g., React, Angular) User experience (UX)
+3 Quality control processes and methodologies Statistical process control (SPC) Root cause analysis and corrective action Quality management systems (e.g., ISO 9001) Compliance and regulatory knowledge
+4               Wireless network design and architecture Wi-Fi standards and protocols RF (Radio Frequency) planning and optimization Wireless security protocols Troubleshooting wireless network issues
+5                                                                                      Event planning Conference logistics Budget management Vendor coordination Marketing and promotion Client relations
+6                                                         Quality assurance processes Testing methodologies (e.g., manual, automated) Bug tracking and reporting Test case development Regression testing
+                                                                                                                                                                                                              Responsibilities
+1           Manage and grow social media accounts, create engaging content, and interact with the online community. Develop social media content calendars and strategies. Monitor social media trends and engagement metrics.
+2 Design and code user interfaces for websites, ensuring a seamless and visually appealing user experience. Collaborate with UX designers to optimize user journeys. Ensure cross-browser compatibility and responsive design.
+3                              Establish and enforce quality control standards and procedures. Conduct quality audits and inspections. Collaborate with production teams to address quality issues and implement improvements.
+4                                   Design, configure, and optimize wireless networks, ensuring reliable and secure wireless connectivity. Troubleshoot wireless network issues. Plan and implement wireless network upgrades.
+5                                                               Specialize in conference and convention planning. Coordinate speaker sessions, exhibitors, and attendee experiences. Oversee event registration and marketing.
+6                                        Test software applications and systems to identify defects and ensure quality. Create test plans, test cases, and test scripts. Collaborate with development teams to resolve issues.
+                                Company
+1                     Icahn Enterprises
+2          PNC Financial Services Group
+3      United Services Automobile Assn.
+4                                  Hess
+5                          Cairn Energy
+6 Adani Ports and Special Economic Zone
+                                                                                                                                                                                                   Company.Profile
+1                           {"Sector":"Diversified","Industry":"Diversified Financials","City":"Sunny Isles Beach","State":"Florida","Zip":"33160","Website":"www.ielp.com","Ticker":"IEP","CEO":"David Willetts"}
+2                         {"Sector":"Financial Services","Industry":"Commercial Banks","City":"Pittsburgh","State":"Pennsylvania","Zip":"15222","Website":"www.pnc.com","Ticker":"PNC","CEO":"William S. Demchak"}
+3                       {"Sector":"Insurance","Industry":"Insurance: Property and Casualty (Stock)","City":"San Antonio","State":"Texas","Zip":"78288","Website":"www.usaa.com","Ticker":"","CEO":"Wayne Peacock"}
+4                                    {"Sector":"Energy","Industry":"Mining, Crude-Oil Production","City":"New York","State":"New York","Zip":"10036","Website":"www.hess.com","Ticker":"HES","CEO":"John B. Hess"}
+5 {"Sector":"Energy","Industry":"Energy - Oil &amp; Gas Exploration &amp; Production","City":"Edinburgh","State":"Scotland","Zip":"EH2 4NH","Website":"https://www.cairnenergy.com/","Ticker":"CNE","CEO":"Simon Thomson"}
+6             {"Sector":"Infrastructure","Industry":"Ports and Infrastructure","City":"Mundra","State":"Gujarat","Zip":"370421","Website":"https://www.adaniports.com/","Ticker":"ADANIPORTS","CEO":"Karan Adani"}</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1615940 obs. of  23 variables:
+ $ Job.Id          : num  1.09e+15 3.98e+14 4.82e+14 6.88e+14 1.17e+14 ...
+ $ Experience      : chr  "5 to 15 Years" "2 to 12 Years" "0 to 12 Years" "4 to 11 Years" ...
+ $ Qualifications  : chr  "M.Tech" "BCA" "PhD" "PhD" ...
+ $ Salary.Range    : chr  "$59K-$99K" "$56K-$116K" "$61K-$104K" "$65K-$91K" ...
+ $ location        : chr  "Douglas" "Ashgabat" "Macao" "Porto-Novo" ...
+ $ Country         : chr  "Isle of Man" "Turkmenistan" "Macao SAR, China" "Benin" ...
+ $ latitude        : num  54.24 38.97 22.2 9.31 -35.68 ...
+ $ longitude       : num  -4.55 59.56 113.54 2.32 -71.54 ...
+ $ Work.Type       : chr  "Intern" "Intern" "Temporary" "Full-Time" ...
+ $ Company.Size    : int  26801 100340 84525 129896 53944 23196 26119 40558 105343 102069 ...
+ $ Job.Posting.Date: chr  "2022-04-24" "2022-12-19" "2022-09-14" "2023-02-25" ...
+ $ Preference      : chr  "Female" "Female" "Male" "Female" ...
+ $ Contact.Person  : chr  "Brandon Cunningham" "Francisco Larsen" "Gary Gibson" "Joy Lucero" ...
+ $ Contact         : chr  "001-381-930-7517x737" "461-509-4216" "9687619505" "+1-820-643-5431x47576" ...
+ $ Job.Title       : chr  "Digital Marketing Specialist" "Web Developer" "Operations Manager" "Network Engineer" ...
+ $ Role            : chr  "Social Media Manager" "Frontend Web Developer" "Quality Control Manager" "Wireless Network Engineer" ...
+ $ Job.Portal      : chr  "Snagajob" "Idealist" "Jobs2Careers" "FlexJobs" ...
+ $ Job.Description : chr  "Social Media Managers oversee an organizations social media presence. They create and schedule content, engage "| __truncated__ "Frontend Web Developers design and implement user interfaces for websites, ensuring they are visually appealing"| __truncated__ "Quality Control Managers establish and enforce quality standards within an organization. They develop quality c"| __truncated__ "Wireless Network Engineers design, implement, and maintain wireless network solutions. They optimize wireless c"| __truncated__ ...
+ $ Benefits        : chr  "{'Flexible Spending Accounts (FSAs), Relocation Assistance, Legal Assistance, Employee Recognition Programs, Fi"| __truncated__ "{'Health Insurance, Retirement Plans, Paid Time Off (PTO), Flexible Work Arrangements, Employee Assistance Programs (EAP)'}" "{'Legal Assistance, Bonuses and Incentive Programs, Wellness Programs, Employee Discounts, Retirement Plans'}" "{'Transportation Benefits, Professional Development, Bonuses and Incentive Programs, Profit-Sharing, Employee Discounts'}" ...
+ $ skills          : chr  "Social media platforms (e.g., Facebook, Twitter, Instagram) Content creation and scheduling Social media analyt"| __truncated__ "HTML, CSS, JavaScript Frontend frameworks (e.g., React, Angular) User experience (UX)" "Quality control processes and methodologies Statistical process control (SPC) Root cause analysis and correctiv"| __truncated__ "Wireless network design and architecture Wi-Fi standards and protocols RF (Radio Frequency) planning and optimi"| __truncated__ ...
+ $ Responsibilities: chr  "Manage and grow social media accounts, create engaging content, and interact with the online community. Develop"| __truncated__ "Design and code user interfaces for websites, ensuring a seamless and visually appealing user experience. Colla"| __truncated__ "Establish and enforce quality control standards and procedures. Conduct quality audits and inspections. Collabo"| __truncated__ "Design, configure, and optimize wireless networks, ensuring reliable and secure wireless connectivity. Troubles"| __truncated__ ...
+ $ Company         : chr  "Icahn Enterprises" "PNC Financial Services Group" "United Services Automobile Assn." "Hess" ...
+ $ Company.Profile : chr  "{\"Sector\":\"Diversified\",\"Industry\":\"Diversified Financials\",\"City\":\"Sunny Isles Beach\",\"State\":\""| __truncated__ "{\"Sector\":\"Financial Services\",\"Industry\":\"Commercial Banks\",\"City\":\"Pittsburgh\",\"State\":\"Pennsy"| __truncated__ "{\"Sector\":\"Insurance\",\"Industry\":\"Insurance: Property and Casualty (Stock)\",\"City\":\"San Antonio\",\""| __truncated__ "{\"Sector\":\"Energy\",\"Industry\":\"Mining, Crude-Oil Production\",\"City\":\"New York\",\"State\":\"New York"| __truncated__ ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Job.Id"           "Experience"       "Qualifications"   "Salary.Range"    
+ [5] "location"         "Country"          "latitude"         "longitude"       
+ [9] "Work.Type"        "Company.Size"     "Job.Posting.Date" "Preference"      
+[13] "Contact.Person"   "Contact"          "Job.Title"        "Role"            
+[17] "Job.Portal"       "Job.Description"  "Benefits"         "skills"          
+[21] "Responsibilities" "Company"          "Company.Profile" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_tibble <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(df)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df_tibble</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,615,940 × 23
+    Job.Id Experience    Qualifications Salary.Range location   Country latitude
+     &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt;
+ 1 1.09e15 5 to 15 Years M.Tech         $59K-$99K    Douglas    Isle o…   54.2  
+ 2 3.98e14 2 to 12 Years BCA            $56K-$116K   Ashgabat   Turkme…   39.0  
+ 3 4.82e14 0 to 12 Years PhD            $61K-$104K   Macao      Macao …   22.2  
+ 4 6.88e14 4 to 11 Years PhD            $65K-$91K    Porto-Novo Benin      9.31 
+ 5 1.17e14 1 to 12 Years MBA            $64K-$87K    Santiago   Chile    -35.7  
+ 6 1.17e14 4 to 12 Years MCA            $59K-$93K    Brussels   Belgium   50.5  
+ 7 1.29e15 3 to 15 Years PhD            $63K-$103K   George To… Cayman…   19.3  
+ 8 1.50e15 2 to 8 Years  M.Com          $65K-$102K   SÃ£o TomÃ© Sao To…    0.186
+ 9 1.68e15 2 to 9 Years  BBA            $65K-$102K   Male       Maldiv…    3.20 
+10 2.56e14 1 to 10 Years BBA            $60K-$80K    Saint Joh… Antigu…   17.1  
+# ℹ 1,615,930 more rows
+# ℹ 16 more variables: longitude &lt;dbl&gt;, Work.Type &lt;chr&gt;, Company.Size &lt;int&gt;,
+#   Job.Posting.Date &lt;chr&gt;, Preference &lt;chr&gt;, Contact.Person &lt;chr&gt;,
+#   Contact &lt;chr&gt;, Job.Title &lt;chr&gt;, Role &lt;chr&gt;, Job.Portal &lt;chr&gt;,
+#   Job.Description &lt;chr&gt;, Benefits &lt;chr&gt;, skills &lt;chr&gt;,
+#   Responsibilities &lt;chr&gt;, Company &lt;chr&gt;, Company.Profile &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>1.Removing the column skills, responsibilities and company.profile to make table more readable</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in library(tidyverse): there is no package called 'tidyverse'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>skills, <span class="sc">-</span>Job.Description, <span class="sc">-</span>Benefits, <span class="sc">-</span>Responsibilities, <span class="sc">-</span>Company.Profile)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Job.Id    Experience Qualifications Salary.Range   location
+1 1.089844e+15 5 to 15 Years         M.Tech    $59K-$99K    Douglas
+2 3.984541e+14 2 to 12 Years            BCA   $56K-$116K   Ashgabat
+3 4.816401e+14 0 to 12 Years            PhD   $61K-$104K      Macao
+4 6.881927e+14 4 to 11 Years            PhD    $65K-$91K Porto-Novo
+5 1.170578e+14 1 to 12 Years            MBA    $64K-$87K   Santiago
+6 1.168314e+14 4 to 12 Years            MCA    $59K-$93K   Brussels
+           Country latitude longitude Work.Type Company.Size Job.Posting.Date
+1      Isle of Man  54.2361   -4.5481    Intern        26801       2022-04-24
+2     Turkmenistan  38.9697   59.5563    Intern       100340       2022-12-19
+3 Macao SAR, China  22.1987  113.5439 Temporary        84525       2022-09-14
+4            Benin   9.3077    2.3158 Full-Time       129896       2023-02-25
+5            Chile -35.6751  -71.5429    Intern        53944       2022-10-11
+6          Belgium  50.5039    4.4699 Full-Time        23196       2023-07-25
+  Preference     Contact.Person               Contact
+1     Female Brandon Cunningham  001-381-930-7517x737
+2     Female   Francisco Larsen          461-509-4216
+3       Male        Gary Gibson            9687619505
+4     Female         Joy Lucero +1-820-643-5431x47576
+5     Female      Julie Johnson     343.975.4702x9340
+6       Male       Matthew Gill   (973)791-5355x52199
+                     Job.Title                      Role   Job.Portal
+1 Digital Marketing Specialist      Social Media Manager     Snagajob
+2                Web Developer    Frontend Web Developer     Idealist
+3           Operations Manager   Quality Control Manager Jobs2Careers
+4             Network Engineer Wireless Network Engineer     FlexJobs
+5                Event Manager        Conference Manager Jobs2Careers
+6              Software Tester Quality Assurance Analyst     Snagajob
+                                Company
+1                     Icahn Enterprises
+2          PNC Financial Services Group
+3      United Services Automobile Assn.
+4                                  Hess
+5                          Cairn Energy
+6 Adani Ports and Special Economic Zone</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>How many days have passes since the Job posting date and todays date added in a new column named DAys_Passed</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in library(tidyverse): there is no package called 'tidyverse'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Job.Posting.Date =</span> <span class="fu">as.Date</span>(Job.Posting.Date, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Days_Passed =</span> <span class="fu">as.numeric</span>(<span class="fu">Sys.Date</span>() <span class="sc">-</span> Job.Posting.Date))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Job.Id    Experience Qualifications Salary.Range   location
+1 1.089844e+15 5 to 15 Years         M.Tech    $59K-$99K    Douglas
+2 3.984541e+14 2 to 12 Years            BCA   $56K-$116K   Ashgabat
+3 4.816401e+14 0 to 12 Years            PhD   $61K-$104K      Macao
+4 6.881927e+14 4 to 11 Years            PhD    $65K-$91K Porto-Novo
+5 1.170578e+14 1 to 12 Years            MBA    $64K-$87K   Santiago
+6 1.168314e+14 4 to 12 Years            MCA    $59K-$93K   Brussels
+           Country latitude longitude Work.Type Company.Size Job.Posting.Date
+1      Isle of Man  54.2361   -4.5481    Intern        26801       2022-04-24
+2     Turkmenistan  38.9697   59.5563    Intern       100340       2022-12-19
+3 Macao SAR, China  22.1987  113.5439 Temporary        84525       2022-09-14
+4            Benin   9.3077    2.3158 Full-Time       129896       2023-02-25
+5            Chile -35.6751  -71.5429    Intern        53944       2022-10-11
+6          Belgium  50.5039    4.4699 Full-Time        23196       2023-07-25
+  Preference     Contact.Person               Contact
+1     Female Brandon Cunningham  001-381-930-7517x737
+2     Female   Francisco Larsen          461-509-4216
+3       Male        Gary Gibson            9687619505
+4     Female         Joy Lucero +1-820-643-5431x47576
+5     Female      Julie Johnson     343.975.4702x9340
+6       Male       Matthew Gill   (973)791-5355x52199
+                     Job.Title                      Role   Job.Portal
+1 Digital Marketing Specialist      Social Media Manager     Snagajob
+2                Web Developer    Frontend Web Developer     Idealist
+3           Operations Manager   Quality Control Manager Jobs2Careers
+4             Network Engineer Wireless Network Engineer     FlexJobs
+5                Event Manager        Conference Manager Jobs2Careers
+6              Software Tester Quality Assurance Analyst     Snagajob
+                                Company Days_Passed
+1                     Icahn Enterprises         779
+2          PNC Financial Services Group         540
+3      United Services Automobile Assn.         636
+4                                  Hess         472
+5                          Cairn Energy         609
+6 Adani Ports and Special Economic Zone         322</code></pre>
+</div>
+</div>
+<p>3.Write a new column with initials of Contact.Person</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Initials <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">str_extract_all</span>(df<span class="sc">$</span>Contact.Person, <span class="st">"[A-Z]"</span>), <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="fu">substr</span>(x, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">collapse =</span> <span class="st">"."</span>))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">which</span>(<span class="fu">names</span>(df) <span class="sc">==</span> <span class="st">"Contact.Person"</span>), </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>             <span class="fu">which</span>(<span class="fu">names</span>(df) <span class="sc">==</span> <span class="st">"Initials"</span>), </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>             (<span class="fu">which</span>(<span class="fu">names</span>(df) <span class="sc">==</span> <span class="st">"Contact.Person"</span>) <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">ncol</span>(df))]</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Job.Id    Experience Qualifications Salary.Range   location
+1 1.089844e+15 5 to 15 Years         M.Tech    $59K-$99K    Douglas
+2 3.984541e+14 2 to 12 Years            BCA   $56K-$116K   Ashgabat
+3 4.816401e+14 0 to 12 Years            PhD   $61K-$104K      Macao
+4 6.881927e+14 4 to 11 Years            PhD    $65K-$91K Porto-Novo
+5 1.170578e+14 1 to 12 Years            MBA    $64K-$87K   Santiago
+6 1.168314e+14 4 to 12 Years            MCA    $59K-$93K   Brussels
+           Country latitude longitude Work.Type Company.Size Job.Posting.Date
+1      Isle of Man  54.2361   -4.5481    Intern        26801       2022-04-24
+2     Turkmenistan  38.9697   59.5563    Intern       100340       2022-12-19
+3 Macao SAR, China  22.1987  113.5439 Temporary        84525       2022-09-14
+4            Benin   9.3077    2.3158 Full-Time       129896       2023-02-25
+5            Chile -35.6751  -71.5429    Intern        53944       2022-10-11
+6          Belgium  50.5039    4.4699 Full-Time        23196       2023-07-25
+  Preference     Contact.Person Initials               Contact
+1     Female Brandon Cunningham      B.C  001-381-930-7517x737
+2     Female   Francisco Larsen      F.L          461-509-4216
+3       Male        Gary Gibson      G.G            9687619505
+4     Female         Joy Lucero      J.L +1-820-643-5431x47576
+5     Female      Julie Johnson      J.J     343.975.4702x9340
+6       Male       Matthew Gill      M.G   (973)791-5355x52199
+                     Job.Title                      Role   Job.Portal
+1 Digital Marketing Specialist      Social Media Manager     Snagajob
+2                Web Developer    Frontend Web Developer     Idealist
+3           Operations Manager   Quality Control Manager Jobs2Careers
+4             Network Engineer Wireless Network Engineer     FlexJobs
+5                Event Manager        Conference Manager Jobs2Careers
+6              Software Tester Quality Assurance Analyst     Snagajob
+                                Company Days_Passed Initials.1
+1                     Icahn Enterprises         779        B.C
+2          PNC Financial Services Group         540        F.L
+3      United Services Automobile Assn.         636        G.G
+4                                  Hess         472        J.L
+5                          Cairn Energy         609        J.J
+6 Adani Ports and Special Economic Zone         322        M.G</code></pre>
+</div>
+</div>
+<p>4.Return the Job.Titles that require PhD and their Saalry</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>phd_jobs <span class="ot">&lt;-</span> df[df<span class="sc">$</span>Qualifications <span class="sc">==</span> <span class="st">"PhD"</span>, <span class="fu">c</span>(<span class="st">"Job.Title"</span>, <span class="st">"Salary.Range"</span>)]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(phd_jobs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Job.Title Salary.Range
+3  Operations Manager   $61K-$104K
+4    Network Engineer    $65K-$91K
+7             Teacher   $63K-$103K
+20      HR Generalist   $65K-$128K
+24  Software Engineer   $62K-$124K
+37   Technical Writer    $60K-$89K</code></pre>
+</div>
+</div>
+<p>5.Create a pie chart for how many years of expirience are required in order to get a job based on the table</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>df_exp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Experience =</span> <span class="fu">c</span>(<span class="st">"0-1 years"</span>, <span class="st">"1-3 years"</span>, <span class="st">"3-5 years"</span>, <span class="st">"5+ years"</span>),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Count =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">20</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>custom_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"0-1 years"</span> <span class="ot">=</span> <span class="st">"violet"</span>, <span class="st">"1-3 years"</span> <span class="ot">=</span> <span class="st">"plum"</span>, <span class="st">"3-5 years"</span> <span class="ot">=</span> <span class="st">"lemonchiffon"</span>, <span class="st">"5+ years"</span> <span class="ot">=</span> <span class="st">"palevioletred"</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_exp, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> Count, <span class="at">fill =</span> Experience)) <span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> custom_colors) <span class="sc">+</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"How Many Years of Experience is Required for a Job?"</span>,</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Make a histogram based on Salary range library(ggplot2)</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Salary.Range)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Salary Range Distribution"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Salary Range"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="7" type="1">
+<li>Join Job.Id and Qualification in the same column</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Job_Qualifications =</span> <span class="fu">paste</span>(Job.Id, Qualifications, <span class="at">sep =</span> <span class="st">"_"</span>))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Job.Id    Experience Qualifications Salary.Range   location
+1 1.089844e+15 5 to 15 Years         M.Tech    $59K-$99K    Douglas
+2 3.984541e+14 2 to 12 Years            BCA   $56K-$116K   Ashgabat
+3 4.816401e+14 0 to 12 Years            PhD   $61K-$104K      Macao
+4 6.881927e+14 4 to 11 Years            PhD    $65K-$91K Porto-Novo
+5 1.170578e+14 1 to 12 Years            MBA    $64K-$87K   Santiago
+6 1.168314e+14 4 to 12 Years            MCA    $59K-$93K   Brussels
+           Country latitude longitude Work.Type Company.Size Job.Posting.Date
+1      Isle of Man  54.2361   -4.5481    Intern        26801       2022-04-24
+2     Turkmenistan  38.9697   59.5563    Intern       100340       2022-12-19
+3 Macao SAR, China  22.1987  113.5439 Temporary        84525       2022-09-14
+4            Benin   9.3077    2.3158 Full-Time       129896       2023-02-25
+5            Chile -35.6751  -71.5429    Intern        53944       2022-10-11
+6          Belgium  50.5039    4.4699 Full-Time        23196       2023-07-25
+  Preference     Contact.Person Initials               Contact
+1     Female Brandon Cunningham      B.C  001-381-930-7517x737
+2     Female   Francisco Larsen      F.L          461-509-4216
+3       Male        Gary Gibson      G.G            9687619505
+4     Female         Joy Lucero      J.L +1-820-643-5431x47576
+5     Female      Julie Johnson      J.J     343.975.4702x9340
+6       Male       Matthew Gill      M.G   (973)791-5355x52199
+                     Job.Title                      Role   Job.Portal
+1 Digital Marketing Specialist      Social Media Manager     Snagajob
+2                Web Developer    Frontend Web Developer     Idealist
+3           Operations Manager   Quality Control Manager Jobs2Careers
+4             Network Engineer Wireless Network Engineer     FlexJobs
+5                Event Manager        Conference Manager Jobs2Careers
+6              Software Tester Quality Assurance Analyst     Snagajob
+                                Company Days_Passed Initials.1
+1                     Icahn Enterprises         779        B.C
+2          PNC Financial Services Group         540        F.L
+3      United Services Automobile Assn.         636        G.G
+4                                  Hess         472        J.L
+5                          Cairn Energy         609        J.J
+6 Adani Ports and Special Economic Zone         322        M.G
+       Job_Qualifications
+1 1089843540111562_M.Tech
+2     398454096642776_BCA
+3     481640072963533_PhD
+4     688192671473044_PhD
+5     117057806156508_MBA
+6     116831420231957_MCA</code></pre>
+</div>
+</div>
+<ol start="8" type="1">
+<li>Filter jobs with salary range between $50K and $100K</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    Salary.Range <span class="sc">&gt;=</span> <span class="st">"$50K"</span> <span class="sc">&amp;</span> Salary.Range <span class="sc">&lt;=</span> <span class="st">"$100K"</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(filtered_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] Job.Id             Experience         Qualifications     Salary.Range      
+ [5] location           Country            latitude           longitude         
+ [9] Work.Type          Company.Size       Job.Posting.Date   Preference        
+[13] Contact.Person     Initials           Contact            Job.Title         
+[17] Role               Job.Portal         Company            Days_Passed       
+[21] Initials.1         Job_Qualifications
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+</div>
+<ol start="9" type="1">
+<li>Filter jobs in Belgium</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>filtered_jobs <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"Belgium"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(filtered_jobs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Job.Id    Experience Qualifications Salary.Range location Country
+1 1.168314e+14 4 to 12 Years            MCA    $59K-$93K Brussels Belgium
+2 9.292308e+14  1 to 9 Years         B.Tech   $59K-$108K Brussels Belgium
+3 1.615069e+15  3 to 9 Years            BCA    $65K-$83K Brussels Belgium
+4 1.256176e+15 3 to 13 Years         B.Tech   $62K-$117K Brussels Belgium
+5 2.350969e+15 2 to 10 Years          B.Com   $56K-$111K Brussels Belgium
+6 9.696113e+14 0 to 15 Years             BA   $64K-$129K Brussels Belgium
+  latitude longitude Work.Type Company.Size Job.Posting.Date Preference
+1  50.5039    4.4699 Full-Time        23196       2023-07-25       Male
+2  50.5039    4.4699 Temporary       131928       2023-06-15     Female
+3  50.5039    4.4699 Temporary        15831       2022-05-08     Female
+4  50.5039    4.4699 Full-Time        65653       2022-02-12       Both
+5  50.5039    4.4699 Temporary        80830       2023-01-04       Both
+6  50.5039    4.4699    Intern       118845       2022-10-14       Male
+   Contact.Person Initials              Contact              Job.Title
+1    Matthew Gill      M.G  (973)791-5355x52199        Software Tester
+2 Jennifer Benton      J.B    981.985.4055x5804 Procurement Specialist
+3      John Cross      J.C   610.942.9277x10929         HR Coordinator
+4  Aaron Santiago      A.S 001-620-731-2289x933              Architect
+5     John Warren      J.W    968.382.6721x3056  Network Administrator
+6     Wanda Lopez      W.L         797-721-0151       Chemical Analyst
+                           Role      Job.Portal
+1     Quality Assurance Analyst        Snagajob
+2           Procurement Manager     SimplyHired
+3       Recruitment Coordinator Internships.com
+4 Sustainable Design Specialist        LinkedIn
+5              Network Engineer          Indeed
+6       Quality Control Analyst            Dice
+                                Company Days_Passed Initials.1
+1 Adani Ports and Special Economic Zone         322        M.G
+2                   Croda International         362        J.B
+3 Alibaba Health Information Technology         765        J.C
+4                          Estée Lauder         850        A.S
+5                   HeidelbergCement AG         524        J.W
+6                            McDonald's         606        W.L
+       Job_Qualifications
+1     116831420231957_MCA
+2  929230808515445_B.Tech
+3    1615068533343634_BCA
+4 1256176335840374_B.Tech
+5  2350968807784203_B.Com
+6      969611319441768_BA</code></pre>
+</div>
+</div>
+<ol start="11" type="1">
+<li>Count number of jobs per country</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>jobs_per_country <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(jobs_per_country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  Country        Count
+  &lt;chr&gt;          &lt;int&gt;
+1 Afghanistan     7411
+2 Albania         7517
+3 Algeria         7392
+4 American Samoa  7564
+5 Andorra         7393
+6 Angola          7504</code></pre>
+</div>
+</div>
+<ol start="12" type="1">
+<li>Histogram of job postings by date</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Job.Posting.Date)) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"pink"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Job Postings Over Time"</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Posting Date"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Job Postings"</span>) <span class="sc">+</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="13" type="1">
+<li>Scatter pllot to visualize between Salary.Range and Company.Size</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Salary_Midpoint =</span> (<span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9]"</span>, <span class="st">""</span>, <span class="fu">sub</span>(<span class="st">"-.*"</span>, <span class="st">""</span>, Salary.Range))) <span class="sc">+</span> </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9]"</span>, <span class="st">""</span>, <span class="fu">sub</span>(<span class="st">".*-"</span>, <span class="st">""</span>, Salary.Range)))) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Company.Size, <span class="at">y =</span> Salary_Midpoint, <span class="at">color =</span> Qualifications)) <span class="sc">+</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatter Plot of Salary Range vs. Company Size"</span>,</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Company Size"</span>,</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Salary Range (Midpoint)"</span>) <span class="sc">+</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level1">
+<h1><strong><em>Conclusion</em></strong></h1>
+<section id="phd-requirement-and-salaries" class="level2">
+<h2 class="anchored" data-anchor-id="phd-requirement-and-salaries"><strong>PhD Requirement and Salaries:</strong></h2>
+<p>Jobs that require a PhD tend to have specific salary ranges, and these can be identified and compared to those that require other qualifications. For instance, from our subset, jobs with PhD requirements tend to fall within certain salary brackets, providing a clear indication of the market value for this qualification.</p>
+<p><em>Experience Impact:</em></p>
+<p>Experience levels correlate with salary ranges, and this can be visualized through scatter plots. Typically, more experience may lead to higher salaries, though the exact relationship can vary based on other factors such as job type and qualifications. Company Size Influence: Company size can influence salary ranges, with larger companies potentially offering higher salaries due to greater resources and larger budgets. Scatter plots can help visualize if there is a strong correlation between company size and offered salaries.</p>
+<p>Recommendations:</p>
+<p>Job Seekers:</p>
+<p><em>Consider obtaining a PhD if targeting higher salary brackets, especially in fields that highly value advanced research and expertise.</em> Evaluate potential employers not just by salary, but also by company size and the type of role, as these factors also significantly impact salary ranges. Employers:</p>
+<p>Understand the market rates for different qualifications and experience levels to offer competitive salaries that can attract top talent. Consider the impact of company size and resources on the ability to offer competitive salaries. By analyzing these aspects, we gain a comprehensive understanding of how various factors influence job offers, salaries, and qualifications, providing valuable insights for both job seekers and employers.</p>
+</section>
+</section>
+<section id="references" class="level1 unnumbered">
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-topresume" class="csl-entry" role="listitem">
+TopResume. 2024. <span>“7 Top Job Search Statistics.”</span> 2024. <a href="https://www.topresume.com/career-advice/7-top-job-search-statistics">https://www.topresume.com/career-advice/7-top-job-search-statistics</a>.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
