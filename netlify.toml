@@ -1,11 +1,10 @@
 [build]
-  command = "quarto render"
-  publish = "public" 
+command = "quarto render"
+publish = "public"
 
 [build.environment]
-  QUARTO_VERSION = "1.4.552"  
+  QUARTO_VERSION = "1.4.552"
 
 [[plugins]]
   package = "netlify-plugin-quarto"
-
 
